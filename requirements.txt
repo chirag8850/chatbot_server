@@ -7,5 +7,5 @@ pinecone-client
 googletrans==3.1.0a0
 python-dotenv
 waitress
-pydantic
+pydantic==1.10.9
 huggingface-hub

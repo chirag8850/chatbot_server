@@ -2,11 +2,10 @@ import os
 import textwrap
 from dotenv import load_dotenv
 from flask import Flask, request
-
 from googletrans import Translator
 import pinecone
-from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.llms import HuggingFaceHub
+from langchain.embeddings import HuggingFaceInstructEmbeddings
 from langchain.vectorstores import Pinecone
 from langchain.chains.question_answering import load_qa_chain
 

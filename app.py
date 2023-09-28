@@ -1,25 +1,23 @@
 import os
 import textwrap
 from dotenv import load_dotenv
+
+load_dotenv()
 from flask import Flask, request
 from googletrans import Translator
 import pinecone
+from InstructorEmbedding import INSTRUCTOR
+from langchain.chains.question_answering import load_qa_chain
 from langchain.llms import HuggingFaceHub
 from langchain.embeddings import HuggingFaceInstructEmbeddings
-from langchain.vectorstores import Pinecone
-from langchain.chains.question_answering import load_qa_chain
-
-# from InstructorEmbedding import INSTRUCTOR
-
 instructor_embeddings = HuggingFaceInstructEmbeddings()
-
+from langchain.vectorstores import Pinecone
 pinecone.init(
     api_key="09f04d8a-e73f-4fba-9389-0895c2fa2296",
     environment="gcp-starter"
 )
 
 
-load_dotenv()
 
 app = Flask(__name__)
 

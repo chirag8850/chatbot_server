@@ -1,29 +1,26 @@
-import pinecone
-from langchain.vectorstores import Pinecone
-from InstructorEmbedding import INSTRUCTOR
-from flask import Flask,request
 import os
-from dotenv import load_dotenv
-from langchain.chains.question_answering import load_qa_chain
 import textwrap
-from langchain.embeddings import HuggingFaceInstructEmbeddings
-instructor_embeddings = HuggingFaceInstructEmbeddings()
-from langchain.llms import HuggingFaceHub
+from dotenv import load_dotenv
+from flask import Flask, request
 
+from googletrans import Translator
+import pinecone
+from langchain.embeddings import HuggingFaceInstructEmbeddings
+from langchain.llms import HuggingFaceHub
+from langchain.vectorstores import Pinecone
+from langchain.chains.question_answering import load_qa_chain
+
+# from InstructorEmbedding import INSTRUCTOR
+
+instructor_embeddings = HuggingFaceInstructEmbeddings()
 
 pinecone.init(
     api_key="09f04d8a-e73f-4fba-9389-0895c2fa2296",
     environment="gcp-starter"
 )
 
+
 load_dotenv()
-
-
-
-
-
-
-
 
 app = Flask(__name__)
 
@@ -58,7 +55,6 @@ def process_llm_response(llm_response):
     # for source in llm_response["source_documents"]:
     #     print(source.metadata['source'])
 
-from googletrans import Translator
 translator = Translator()
 
 @app.route('/', methods=['GET'])

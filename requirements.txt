@@ -1,0 +1,9 @@
+flask
+gunicorn
+langchain 
+sentence_transformers 
+InstructorEmbedding
+pinecone-client
+googletrans==3.1.0a0
+python-dotenv
+waitress

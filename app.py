@@ -1,18 +1,27 @@
+import pinecone
+from langchain.vectorstores import Pinecone
+from InstructorEmbedding import INSTRUCTOR
 from flask import Flask,request
 import os
 from dotenv import load_dotenv
-load_dotenv()
-from InstructorEmbedding import INSTRUCTOR
 from langchain.chains.question_answering import load_qa_chain
+import textwrap
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 instructor_embeddings = HuggingFaceInstructEmbeddings()
+from langchain.llms import HuggingFaceHub
 
-import pinecone
-from langchain.vectorstores import Pinecone
+
 pinecone.init(
     api_key="09f04d8a-e73f-4fba-9389-0895c2fa2296",
     environment="gcp-starter"
 )
+
+load_dotenv()
+
+
+
+
+
 
 
 
@@ -23,7 +32,7 @@ Embeddings = instructor_embeddings
 index = Pinecone.from_existing_index(index_name, Embeddings)
 
 huggingfacehub_api_token = os.getenv('HUGGINGFACEHUB_API_TOKEN')
-from langchain.llms import HuggingFaceHub
+
 
 repo_id = "tiiuae/falcon-7b"
 llm = HuggingFaceHub(huggingfacehub_api_token=huggingfacehub_api_token,
@@ -32,7 +41,7 @@ llm = HuggingFaceHub(huggingfacehub_api_token=huggingfacehub_api_token,
 
 chain = load_qa_chain(llm, chain_type="stuff")
 
-import textwrap
+
 
 def wrap_text_preserve_newlines(text, width=110):
     lines = text.split('\n')

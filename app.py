@@ -1,10 +1,10 @@
+from langchain.llms import HuggingFacePipeline
 from flask import Flask,request
 import os
 from dotenv import load_dotenv
 load_dotenv()
 from InstructorEmbedding import INSTRUCTOR
 from langchain.chains.question_answering import load_qa_chain
-from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceInstructEmbeddings
 instructor_embeddings = HuggingFaceInstructEmbeddings()
 
